@@ -1,6 +1,5 @@
 <?php 
 session_start();
-
 require_once("vendor/autoload.php");
 
 use \Slim\Slim;
@@ -19,8 +18,6 @@ $app->get('/', function() {
 	$page->setTpl("index");
    
 });
-
-
 
 $app->get('/admin', function() {
 
@@ -60,6 +57,70 @@ $app->get('/admin/logout', function(){
 	exit;
 
 });
+
+$app->get("/admin/users", function(){
+
+	User::verifyLogin();
+
+	$users = User::listAll();
+
+	$page = new PageAdmin();
+
+	$page->setTpl("users", array(
+		"users"=>$users		
+	));
+
+});
+
+$app->get("/admin/users/create", function(){
+
+	User::verifyLogin();
+
+	$page = new PageAdmin();
+
+	$page->setTpl("users-create");
+
+});
+
+$app->get("/amin/users/:iduser/delete", function($iduser){
+
+	User::verifyLogin();
+
+});
+
+$app->get("/admin/users/:iduser", function($iduser){
+	
+	User::verifyLogin();
+	echo $iduser;
+	$page = new PageAdmin();
+
+	$page->setTpl("users-update");
+
+});
+
+$app->post("/admin/users/create", function(){
+
+	User::verifyLogin();
+
+	$user = new User();
+
+	$_POST["inadmin"] = (isset($_POST["inadmin"]))?1:0;
+
+	$user->setData($_POST);
+
+	$user->save();
+
+	header("Location: /admin/users");
+	exit;
+});
+
+$app->post("/amin/users/:iduser", function($iduser){
+
+	User::verifyLogin();
+
+});
+
+
 
 
 $app->run();
