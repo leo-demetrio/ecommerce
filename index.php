@@ -19,15 +19,15 @@ $app->get('/', function() {
    
 });
 
-// $app->get('/admin', function() {
+$app->get('/admin', function() {
 
-// 	User::verifyLogin();
+	//User::verifyLogin();
 
-// 	$page = new PageAdmin();
+	$page = new PageAdmin();
 
-// 	$page->setTpl("index");
+	$page->setTpl("index");
    
-// });
+});
 
 // $app->get('/admin/login', function() {
 
