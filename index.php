@@ -72,7 +72,7 @@ $app->get("/admin/users", function(){
 	$page->setTpl("users", compact("users"));
 
 });
-
+//criar
 $app->get("/admin/users/create", function(){
 
 	//User::verifyLogin();
@@ -117,7 +117,7 @@ $app->get("/admin/users/:iduser", function($iduser){
 	$page->setTpl("users-update",["user" => $user->getValues()] );
 
 });
-
+//criar
 $app->post("/admin/users/create", function(){
 
 	//User::verifyLogin();
