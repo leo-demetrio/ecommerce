@@ -91,20 +91,17 @@ class User extends Model
 	public static function login($user,$password)
 	{
 
-
+		
 		$sql = new Sql();
 
 		$results = $sql->select("SELECT * FROM tb_users WHERE deslogin = :login", [
-
 			":login" => $user
 		]);
-		// echo count($results);
-		// var_dump($results);exit;
+	
 		if (count($results) === 0) throw new \Exception("Usuário inexistente ou senha inválida no login");
 
 		$result = $results[0];
-		 //  echo "<pre>";
-		 // var_dump($result);
+		 
 		
 		$verify = password_verify($password, $result["despassword"]);
 	
