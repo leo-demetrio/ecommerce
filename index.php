@@ -9,9 +9,15 @@ use \Hcode\PageAdmin;
 use \Hcode\Model\User; 
 use \Hcode\Model\Category; 
 
+
 $app = new Slim();
 
 $app->config('debug', true);
+
+$app->get("/teste", function () {
+	$user = new User();
+	$user->testeSql();
+});
 
 $app->get('/', function() {
 
@@ -64,9 +70,10 @@ $app->get('/admin/logout', function(){
 
 $app->get("/admin/users", function(){
 
-	//User::verifyLogin();
+	User::verifyLogin();
 
 	$users = User::listAll();
+	
 	
 	$page = new PageAdmin();
 
@@ -76,7 +83,7 @@ $app->get("/admin/users", function(){
 //criar
 $app->get("/admin/users/create", function(){
 
-	//User::verifyLogin();
+	User::verifyLogin();
 
 	$page = new PageAdmin();
 
@@ -87,7 +94,7 @@ $app->get("/admin/users/create", function(){
 //delete
 $app->get("/admin/users/:iduser/delete", function($iduser){
 
-	//User::verifyLogin();
+	User::verifyLogin();
 
 	$user = new User();
 
@@ -103,7 +110,7 @@ $app->get("/admin/users/:iduser/delete", function($iduser){
 //update
 $app->get("/admin/users/:iduser", function($iduser){
 	
-	//User::verifyLogin();
+	User::verifyLogin();
 	
 	
 	$user = new User();
@@ -121,7 +128,7 @@ $app->get("/admin/users/:iduser", function($iduser){
 //criar
 $app->post("/admin/users/create", function(){
 
-	//User::verifyLogin();
+	User::verifyLogin();
 
 	$user = new User();
 
@@ -137,7 +144,7 @@ $app->post("/admin/users/create", function(){
 //update
 $app->post("/admin/users/:iduser", function($iduser){
 
-	//User::verifyLogin();
+	User::verifyLogin();
 
 	$user = new User();
 

@@ -13,6 +13,21 @@ class User extends Model
 	const AES_IV = 'THLFOrnEzyKXtjwb';
 	const OPTION = 0;
 
+	public $sql;
+
+	public function __construct() {
+		
+		$this->sql = new Sql();
+	}
+
+	public function testeSql()
+	{
+		//var_dump($this->sql->select());exit;
+		$r = $this->sql->select("SELECT * FROM tb_users");
+		var_dump($r);
+		echo "blz";exit;
+	}
+
 	public static function listAll(){
 
 		$sql = new Sql();
@@ -38,9 +53,9 @@ class User extends Model
 
 	public function update(){
 
-		$sql = new Sql();
+		//$sql = new Sql();
 
-		$result = $sql->select("CALL sp_usersupdate_save(:iduser,:desperson,:deslogin,:despassword,:desemail,:nrphone,:inadmin)",
+		$result = $this->sql->select("CALL sp_usersupdate_save(:iduser,:desperson,:deslogin,:despassword,:desemail,:nrphone,:inadmin)",
 		[
 			":iduser" => $this->getiduser(),
 			":desperson" => $this->getdesperson(),
