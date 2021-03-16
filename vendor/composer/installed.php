@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '98676938511c7636629563969df374d3730de534',
+    'reference' => '8e1fcdaaccd900ce59d27c8d4e0a77070f007d76',
     'name' => 'leodemtrio/ecommerce',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '98676938511c7636629563969df374d3730de534',
+      'reference' => '8e1fcdaaccd900ce59d27c8d4e0a77070f007d76',
     ),
     'phpmailer/phpmailer' => 
     array (
