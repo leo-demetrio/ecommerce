@@ -16,6 +16,7 @@ $app->config('debug', true);
 
 $app->get("/teste", function () {
 	$user = new User();
+	echo "<pre>";
 	$user->testeSql();
 });
 
@@ -250,7 +251,7 @@ $app->get('/admin/categories/create', function () {
 $app->post('/admin/categories/create', function () {
 
 	$category = new Category();
-
+	//var_dump($_POST);exit;
 	$category->setData($_POST);
 	$category->save();
 
@@ -271,28 +272,35 @@ $app->get('/admin/categories/:idcategory/delete', function ($idcategory){
 });
 
 $app->get('/admin/categories/:idcategory', function ($idcategory){
-
+	User::verifyLogin();
 	$category = new Category();
-
-	$category->get((int)$idcategory);		
-	
+	$category->get((int)$idcategory);	
 	$page = new PageAdmin();
 	$page->setTpl("categories-update",["category" => $category->getvalues()]);
 });
 
 $app->post('/admin/categories/:idcategory', function ($idcategory){
 
+	User::verifyLogin();
 	$category = new Category();
-
-	$category->get((int)$idcategory);
-		
+	$category->get((int)$idcategory);	
 	$category->setData($_POST);
-
 	$category->save();
-
 	header('Location: /admin/categories');
 	exit;
 });
+
+$app->get('/categories/:idcategory', function ($idcategory){
+	$category = new Category();
+	$category->get((int)$idcategory);
+
+	$page = new Page();
+	$page->setTpl("category", [
+		'category' => $category->getValues(),
+		'products' => []
+	]);
+});
+
 
 
 $app->run();
